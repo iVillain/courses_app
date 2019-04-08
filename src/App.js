@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class App extends Component {
 
   constructor(props) {
@@ -12,7 +13,7 @@ class App extends Component {
 
   componentDidMount() {
 
-    fetch('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
+    fetch('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json')
       .then(res => res.json())
       .then(json => {
         this.setState({
@@ -38,8 +39,8 @@ class App extends Component {
 
           <ul>
             {items.map(item => (
-              <li key={item.ccy}>
-                Currency {item.ccy} | Value {item.rate}
+              <li key={item.txt}>
+                <p>Валюта {item.cc} ({item.txt}) <span> Курс к гривне: {item.rate} </span> </p>
               </li>
             ))}
           </ul>
